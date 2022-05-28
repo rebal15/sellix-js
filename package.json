@@ -1,0 +1,39 @@
+{
+    "name": "sellix-js",
+    "version": "1.0.0",
+    "description": "An unofficial JS wrapper for the Selix.io API",
+    "keywords": [
+        "sellix",
+        "wrapper",
+        "api"
+    ],
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "author": "Lucas Rebato",
+    "license": "MIT",
+    "repository": {
+        "type": "git"
+    },
+    "files": [
+        "dist/**/*"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "format": "prettier --write \"src/**/*.ts\"",
+        "lint": "tslint -p tsconfig.json",
+        "prepare": "yarn build",
+        "prepublishOnly": "yarn lint",
+        "preversion": "yarn lint",
+        "version": "yarn format && git add -A src",
+        "postversion": "git push && git push --tags"
+    },
+    "devDependencies": {
+        "prettier": "^2.6.2",
+        "tslint": "^6.1.3",
+        "tslint-config-prettier": "^1.18.0",
+        "typescript": "^4.6.4"
+    },
+    "dependencies": {
+        "axios": "^0.27.2"
+    }
+}
