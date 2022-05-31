@@ -1,10 +1,10 @@
 export interface SellixApiResponse<T> {
     status: number;
     data: T;
-    message: string | null;
-    log: string | null;
-    error: string | null;
-    env: 'production' | 'development';
+    message?: string;
+    log?: string;
+    error?: string;
+    env?: 'production' | 'development';
 }
 
 export interface SellixCustomer {
@@ -12,14 +12,14 @@ export interface SellixCustomer {
     email: string;
     name: string;
     surname: string;
-    phone?: number;
-    phone_country_code?: string;
-    country_code?: string;
-    street_address?: string;
-    additional_address_info?: any;
-    city?: string;
-    postal_code?: number;
-    state?: string;
+    phone: number;
+    phone_country_code: string;
+    country_code: string;
+    street_address: string;
+    additional_address_info: string;
+    city: string;
+    postal_code: string;
+    state: string;
 }
 
 export interface FraudShield {
@@ -87,24 +87,24 @@ export interface SellixProduct {
 }
 
 export interface SellixPayment {
-    title?: string;
-    productId?: string;
-    cart?: SellixPaymentCart;
-    gateway?: GatewayTypes;
-    paypalApm?: any;
-    creditCard?: any;
-    lexPaymentMethod?: any;
-    value?: number;
-    currency?: string;
-    quantity?: number;
-    couponCode?: string;
-    confirmations?: number;
+    title: string;
+    product_id: string;
+    cart: SellixPaymentCart;
+    gateway: GatewayTypes;
+    paypal_apm: any;
+    credit_card: any;
+    lex_payment_method: any;
+    value: number;
+    currency: string;
+    quantity: number;
+    coupon_code: string;
+    confirmations: number;
     email: string;
-    customFields?: object[];
-    fraudShield?: FraudShield;
-    webhook?: string;
-    whiteLabel?: boolean;
-    returnUrl?: string;
+    custom_fields: object[];
+    fraud_shield: FraudShield;
+    webhook: string;
+    white_label: boolean;
+    return_url: string;
 }
 
 export enum SubscriptionStatus {
@@ -117,9 +117,9 @@ export enum SubscriptionStatus {
 // Customers API
 
 export type GetCustomersResponse = SellixApiResponse<{ customers: SellixCustomer[] }>;
-
 export type GetCustomerResponse = SellixApiResponse<{ customer: SellixCustomer }>;
 
+export type CreateCustomerRequest = Partial<SellixCustomer> & { email: string; name: string; surname: string };
 export type CreateCustomerResponse = SellixApiResponse<{ customerId: string }>;
 
 export type UpdateCustomerResponse = SellixApiResponse<null>;
