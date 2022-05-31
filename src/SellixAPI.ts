@@ -1,9 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios';
 import {
+    CreateCustomerRequest,
     CreateCustomerResponse,
     CreatePaymentResponse,
     CreateProductResponse,
     GetCustomerResponse,
+    GetCustomersResponse,
     GetProductResponse,
     GetProductsResponse,
     SellixCustomer,
@@ -44,16 +46,16 @@ export default class SellixAPI {
 
     // Customers
 
-    getCustomers = async () => await (await this.request.get<GetCustomerResponse>('customers')).data;
+    getCustomers = async () => await (await this.request.get<GetCustomersResponse>('customers')).data;
 
-    createCustomer = async (customer: SellixCustomer) =>
+    createCustomer = async (params: CreateCustomerRequest) =>
         await (
-            await this.request.post<CreateCustomerResponse>('customers', customer)
+            await this.request.post<CreateCustomerResponse>('customers', params)
         ).data;
 
-    updateCustomer = async (customerId: string, customer: SellixCustomer) =>
+    updateCustomer = async (customerId: string, params: Omit<Partial<SellixCustomer>, 'id'>) =>
         await (
-            await this.request.put<UpdateCustomerResponse>(`customers/${customerId}`, customer)
+            await this.request.put<UpdateCustomerResponse>(`customers/${customerId}`, params)
         ).data;
 
     getCustomer = async (customerId: string) =>
