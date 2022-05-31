@@ -7,13 +7,15 @@
         "wrapper",
         "api"
     ],
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
     "author": "Lucas Rebato",
     "license": "MIT",
     "repository": {
-        "type": "git"
+        "type": "git",
+        "url": "https://github.com/rebal15/sellix-js.git"
     },
+    "homepage": "https://github.com/rebal15/sellix-js.git",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "files": [
         "dist/**/*"
     ],
