@@ -1,6 +1,6 @@
 {
     "name": "sellix-js",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "An unofficial JS wrapper for the Selix.io API",
     "keywords": [
         "sellix",
@@ -27,7 +27,7 @@
         "prepublishOnly": "yarn lint",
         "preversion": "yarn lint",
         "version": "yarn format && git add -A src",
-        "postversion": "git push && git push --tags"
+        "postversion": "git push --tags && yarn publish . --tag $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\""
     },
     "devDependencies": {
         "prettier": "^2.6.2",
