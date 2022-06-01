@@ -2,17 +2,21 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosRes
 import {
     CreateCustomerRequest,
     CreateCustomerResponse,
-    CreatePaymentResponse,
+    CreatePaymentWhiteLabelResponse,
+    CreatePaymentNonWhiteLabelResponse,
     CreateProductResponse,
     GetCustomerResponse,
     GetCustomersResponse,
     GetProductResponse,
     GetProductsResponse,
-    SellixCustomer,
-    SellixPayment,
-    SellixProduct,
+    Customer,
+    Payment,
+    Product,
     UpdateCustomerResponse,
     UpdateProductResponse,
+    DeletePaymentResponse,
+    CreateProductRequest,
+    UpdateProductRequest,
 } from './types/API';
 
 import { SellixAPIConfig } from './types/SellixAPIConfig';
@@ -53,7 +57,7 @@ export default class SellixAPI {
             await this.request.post<CreateCustomerResponse>('customers', params)
         ).data;
 
-    updateCustomer = async (customerId: string, params: Omit<Partial<SellixCustomer>, 'id'>) =>
+    updateCustomer = async (customerId: string, params: Omit<Partial<Customer>, 'id'>) =>
         await (
             await this.request.put<UpdateCustomerResponse>(`customers/${customerId}`, params)
         ).data;
@@ -65,12 +69,21 @@ export default class SellixAPI {
 
     // Payments
 
-    createPayment = async (paymentDetails: SellixPayment) =>
-        await this.request.post<CreatePaymentResponse>('payments', paymentDetails).then;
+    createPayment = async (paymentDetails: Payment) => {
+        if (paymentDetails.white_label) {
+            return await (
+                await this.request.post<CreatePaymentWhiteLabelResponse>('payments', paymentDetails)
+            ).data;
+        } else {
+            return await (
+                await this.request.post<CreatePaymentNonWhiteLabelResponse>('payments', paymentDetails)
+            ).data;
+        }
+    };
 
-    voidPayment = async (uniqid: string) =>
+    deletePayment = async (uniqid: string) =>
         await (
-            await this.request.delete<CreatePaymentResponse>(`payments/${uniqid}`)
+            await this.request.delete<DeletePaymentResponse>(`payments/${uniqid}`)
         ).data;
 
     // Products
@@ -82,13 +95,13 @@ export default class SellixAPI {
             await this.request.get<GetProductResponse>(`products/${productId}`)
         ).data;
 
-    createProduct = async (product: SellixProduct) =>
+    createProduct = async (params: CreateProductRequest) =>
         await (
-            await this.request.post<CreateProductResponse>('products', product)
+            await this.request.post<CreateProductResponse>('products', params)
         ).data;
 
-    updateProduct = async (productId: string, product: SellixProduct) =>
+    updateProduct = async (productId: string, params: UpdateProductRequest) =>
         await (
-            await this.request.put<UpdateProductResponse>(`products/${productId}`, product)
+            await this.request.put<UpdateProductResponse>(`products/${productId}`, params)
         ).data;
 }
