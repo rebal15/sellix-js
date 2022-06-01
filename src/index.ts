@@ -1,26 +1,60 @@
 import SellixAPI from './SellixAPI';
 
+// Main class
+
 export default SellixAPI;
-export {
-    SellixApiResponse,
-    SellixCustomer,
-    FraudShield,
-    SellixPaymentCart,
-    GatewayTypes,
-    SellixProduct,
-    SellixPayment,
-    SubscriptionStatus,
-} from './types/API';
+
+// API Types
 
 export {
-    GetCustomersResponse,
+    SellixApiResponse,
+    Customer,
+    Product,
+    ProductType,
+    ProductSubtype,
+    Currency,
+    VolumeDiscount,
+    GatewayType,
+    Payment,
+    PaymentCart,
+    FraudShield,
+    Invoice,
+    InvoiceType,
+    InvoiceStatusType,
+    InvoiceStatus,
+    IPInfo,
+    File,
+    Webhook,
+    WebhookEvent,
+    CryptoPayoutTransaction,
+    CryptoTransaction,
+    PaypalDispute,
+    PaypalDisputeMessage,
+} from './types/API';
+
+// API Requests
+
+export {
+    CreateCustomerRequest,
+    UpdateCustomerRequest,
+    CreateProductRequest,
+    UpdateProductRequest,
+    CreatePaymentRequest,
+} from './types/API';
+
+// API Responses
+
+export {
     GetCustomerResponse,
+    GetCustomersResponse,
     CreateCustomerResponse,
     UpdateCustomerResponse,
-    CreatePaymentResponse,
     GetProductResponse,
     GetProductsResponse,
     CreateProductResponse,
     UpdateProductResponse,
     DeleteProductResponse,
+    CreatePaymentWhiteLabelResponse,
+    CreatePaymentNonWhiteLabelResponse,
+    DeletePaymentResponse,
 } from './types/API';
