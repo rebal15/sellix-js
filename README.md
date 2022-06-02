@@ -64,6 +64,37 @@ or
 sellix.getCustomers().then((customers) => {
     console.log(customers);
 });
+
+/* 
+{
+    "data": {
+        "customers": [
+            {
+                "id": "cst_8s61b2g7atm9s892",
+                "name": "Joe",
+                "surname": "Bloggs"
+                "email": "example@example.com",
+                "phone": 12345678900,
+                "phone_country_code": "GB",
+                "street_address": "Buckingham Palace",
+                "city": "London",
+                "postal_code": "SW1A 1AA",
+                "state": "United Kingdom",
+                "country_code": "GB",
+                "additional_address_info": null,
+                "email": "example@example.com",
+                
+                
+            }
+        ]
+    },
+    "env": "production",
+    "error": null,
+    "log": null,
+    "message": null,
+    "status": 200
+}
+*/
 ```
 
 ### Typescript
